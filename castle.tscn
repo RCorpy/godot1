@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://br2g87b823x06"]
+
+[ext_resource type="Texture2D" uid="uid://bgmhwobhse7lk" path="res://Tiny Swords (Update 010)/Factions/Knights/Buildings/Castle/Castle_Construction.png" id="1_qr2i2"]
+[ext_resource type="Script" path="res://CollisionShape2D.gd" id="2_otiks"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gp0xj"]
+size = Vector2(389, 190)
+
+[node name="Castle" type="StaticBody2D"]
+position = Vector2(1099, 108)
+
+[node name="CastleConstruction" type="Sprite2D" parent="."]
+texture = ExtResource("1_qr2i2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-116, 10, 125, 10, 153, 60, 117, 122, -114, 121, -155, 72)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2.5, 67)
+shape = SubResource("RectangleShape2D_gp0xj")
+script = ExtResource("2_otiks")

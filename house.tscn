@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbfav3l5xyvvs"]
+
+[ext_resource type="Texture2D" uid="uid://c6vggfwp1m0w1" path="res://Tiny Swords (Update 010)/Factions/Knights/Buildings/House/House_Construction.png" id="1_wl0uv"]
+[ext_resource type="Script" path="res://CollisionShape2D2.gd" id="2_re26i"]
+[ext_resource type="Script" path="res://Timer.gd" id="3_le1bs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fcrs"]
+size = Vector2(132, 139)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iprmo"]
+radius = 267.248
+
+[node name="house" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 22.5)
+shape = SubResource("RectangleShape2D_7fcrs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wl0uv")
+
+[node name="interacting" type="Area2D" parent="."]
+position = Vector2(0, 22.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interacting"]
+light_mask = 4
+visibility_layer = 4
+shape = SubResource("CircleShape2D_iprmo")
+script = ExtResource("2_re26i")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+light_mask = 0
+offset_left = -129.0
+offset_top = -100.0
+offset_right = 125.0
+offset_bottom = -62.0
+text = "3h 30 min 20seg"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Label"]
+script = ExtResource("3_le1bs")
+
+[connection signal="body_entered" from="interacting" to="interacting/CollisionShape2D" method="_on_interacting_body_entered"]
