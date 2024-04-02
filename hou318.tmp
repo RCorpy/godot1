@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbfav3l5xyvvs"]
+[gd_scene load_steps=7 format=3 uid="uid://bbfav3l5xyvvs"]
 
 [ext_resource type="Texture2D" uid="uid://c6vggfwp1m0w1" path="res://Tiny Swords (Update 010)/Factions/Knights/Buildings/House/House_Construction.png" id="1_wl0uv"]
+[ext_resource type="Script" path="res://house.gd" id="1_xrlk6"]
 [ext_resource type="Script" path="res://CollisionShape2D2.gd" id="2_re26i"]
 [ext_resource type="Script" path="res://Timer.gd" id="3_le1bs"]
-[ext_resource type="Script" path="res://enviroment.gd" id="4_0v70k"]
-[ext_resource type="Script" path="res://progresshouse.gd" id="6_gs83b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fcrs"]
 size = Vector2(132, 139)
@@ -12,14 +11,8 @@ size = Vector2(132, 139)
 [sub_resource type="CircleShape2D" id="CircleShape2D_iprmo"]
 radius = 267.248
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4wvhq"]
-bg_color = Color(0, 0.729412, 0.152941, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [node name="House" type="StaticBody2D"]
+script = ExtResource("1_xrlk6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 22.5)
@@ -53,19 +46,5 @@ unique_name_in_owner = true
 one_shot = true
 autostart = true
 script = ExtResource("3_le1bs")
-
-[node name="ProgressBar2" type="ProgressBar" parent="Label"]
-offset_left = 49.0
-offset_top = 30.0
-offset_right = 211.0
-offset_bottom = 46.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_4wvhq")
-value = 50.0
-show_percentage = false
-script = ExtResource("6_gs83b")
-
-[node name="enviroment" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("4_0v70k")
 
 [connection signal="body_entered" from="interacting" to="interacting/CollisionShape2D" method="_on_interacting_body_entered"]
